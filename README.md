@@ -1,4 +1,4 @@
-# Bayesian Machine Learning: A/B Testing
+# Deep Learning and Artificial Neural Networks
 ## Motivation
 This collection respresents a set codes aiding my learning / recap of in depth Artificial Neural Networks algorithms, from their derivation to applications. This repo contains codes for recaps of traditional neuons, classification tasks, neural network training algorithms such as backpropagation, several practical projects, some basic Tensorflow codes and a larger project looking at Facial Expression Recognition. 
 
