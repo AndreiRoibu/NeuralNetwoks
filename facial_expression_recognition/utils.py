@@ -20,6 +20,7 @@ def get_data(Ntest=1000):
             Y.append(int(row[0]))
             X.append([int(p) for p in row[1].split()])
 
+    # We normalise the data in range [0,1]
     X, Y = np.array(X) / 255.0, np.array(Y)
 
     # We shuffle the data
