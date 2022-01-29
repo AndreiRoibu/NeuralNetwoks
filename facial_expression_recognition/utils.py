@@ -6,7 +6,7 @@ import os
 directory_path = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 directory_path = directory_path.replace('NeuralNetwoks/facial_expression_recognition', '')
 
-def get_data(Ntest=1000):
+def get_data(Ntest=1000, balance_class_one=False):
     file_path = directory_path + 'data/challenges-in-representation-learning-facial-expression-recognition-challenge/fer2013/fer2013.csv'
 
     # We read the data
@@ -29,6 +29,13 @@ def get_data(Ntest=1000):
     # We split the data
     Xtrain, Ytrain = X[:-Ntest], Y[:-Ntest]
     Xtest, Ytest = X[Ntest:], Y[Ntest:]
+
+    if balance_class_one == True:
+        Xoriginal, Yoriginal = Xtrain[Ytrain!=1, :], Ytrain[Ytrain!=1]
+        Xone = Xtrain[Ytrain==1, :]
+        Xone = np.repeat(Xone, 9, axis=0) # balancing class 1
+        Xtrain = np.vstack([Xoriginal, Xone])
+        Ytrain = np.concatenate((Yoriginal, [1*len(Xone)]))
 
     return Xtrain, Ytrain, Xtest, Ytest
 
