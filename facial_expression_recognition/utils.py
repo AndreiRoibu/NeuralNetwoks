@@ -39,5 +39,33 @@ def get_data(Ntest=1000, balance_class_one=False):
 
     return Xtrain, Ytrain, Xtest, Ytest
 
+def get_binary_data(Ntest=1000):
+    file_path = directory_path + 'data/challenges-in-representation-learning-facial-expression-recognition-challenge/fer2013/fer2013.csv'
+
+    # We read the data
+    X, Y = [], []
+    first_line = True
+    for line in open(file_path):
+        if first_line == True:
+            first_line = False
+        else:
+            row = line.split(',')
+            y = int(row([0]))
+            if y == 0 or y == 1:
+                Y.append(y)
+                X.append([int(p) for p in row[1].split()])
+
+    # We normalise the data in range [0,1]
+    X, Y = np.array(X) / 255.0, np.array(Y)
+
+    # We shuffle the data
+    X, Y = shuffle(X, Y)
+
+    # We split the data
+    Xtrain, Ytrain = X[:-Ntest], Y[:-Ntest]
+    Xtest, Ytest = X[Ntest:], Y[Ntest:]
+
+    return Xtrain, Ytrain, Xtest, Ytest
+
 if __name__ == '__main__':
     get_data()
