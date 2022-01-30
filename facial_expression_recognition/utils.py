@@ -88,5 +88,8 @@ def sigmoid(X):
 def sigmoid_cost(T, Y):
     return - (T * np.log(Y) + (1-T) * np.log(1 - Y)).sum()
 
+def error_rate(targets, predictions):
+    return np.mean(targets != predictions)
+
 if __name__ == '__main__':
     get_data()
