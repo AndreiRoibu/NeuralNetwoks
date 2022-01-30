@@ -97,5 +97,13 @@ def sigmoid_cost(T, Y):
 def error_rate(targets, predictions):
     return np.mean(targets != predictions)
 
+def y_to_indicator(y):
+    N = len(y)
+    K = len(set(y))
+    indicator = np.zeros((N, K)):
+    for i in range(N):
+        indicator[i, y[i]] = 1
+    return indicator
+
 if __name__ == '__main__':
     get_binary_data()
