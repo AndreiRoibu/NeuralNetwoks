@@ -9,7 +9,7 @@ class ANN(object):
     def __init__(self, hidden_units):
         self.hidden_units = hidden_units
 
-    def fit(self, Xtrain, Ytrain, learning_rate=5e-7, reg=1.0, epochs=10000, show_fig=False):
+    def fit(self, Xtrain, Ytrain, learning_rate=1e-6, reg=1.0, epochs=10000, show_fig=False):
         Xtrain, Ytrain = shuffle(Xtrain, Ytrain)
         Xvalid, Yvalid = Xtrain[-1000:], Ytrain[-1000:]
         Xtrain, Ytrain = Xtrain[:-1000], Ytrain[:-1000]
@@ -59,7 +59,7 @@ class ANN(object):
         return sigmoid(Z.dot(self.W2) + self.b2), Z
 
     def predict(self, X):
-        pY = self.forward(X)
+        pY, _ = self.forward(X)
         return np.round(pY)
 
     def score(self, X, Y):
