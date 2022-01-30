@@ -50,7 +50,7 @@ def get_binary_data(Ntest=1000, balance_class_one=False):
             first_line = False
         else:
             row = line.split(',')
-            y = int(row([0]))
+            y = int(row[0])
             if y == 0 or y == 1:
                 Y.append(y)
                 X.append([int(p) for p in row[1].split()])
