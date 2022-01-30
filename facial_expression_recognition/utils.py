@@ -85,5 +85,8 @@ def relu(X):
 def sigmoid(X):
     return 1 / (1 + np.exp(-X))
 
+def sigmoid_cost(T, Y):
+    return - (T * np.log(Y) + (1-T) * np.log(1 - Y)).sum()
+
 if __name__ == '__main__':
     get_data()
