@@ -28,7 +28,7 @@ def get_data(Ntest=1000, balance_class_one=False):
 
     # We split the data
     Xtrain, Ytrain = X[:-Ntest], Y[:-Ntest]
-    Xtest, Ytest = X[Ntest:], Y[Ntest:]
+    Xtest, Ytest = X[-Ntest:], Y[-Ntest:]
 
     if balance_class_one == True:
         Xoriginal, Yoriginal = Xtrain[Ytrain!=1, :], Ytrain[Ytrain!=1]
@@ -63,8 +63,8 @@ def get_binary_data(Ntest=1000, balance_class_one=False):
 
     # We split the data
     Xtrain, Ytrain = X[:-Ntest], Y[:-Ntest]
-    Xtest, Ytest = X[Ntest:], Y[Ntest:]
-
+    Xtest, Ytest = X[-Ntest:], Y[-Ntest:]
+    
     if balance_class_one == True:
         Xoriginal, Yoriginal = Xtrain[Ytrain!=1, :], Ytrain[Ytrain!=1]
         Xone = Xtrain[Ytrain==1, :]
@@ -92,4 +92,4 @@ def error_rate(targets, predictions):
     return np.mean(targets != predictions)
 
 if __name__ == '__main__':
-    get_data()
+    get_binary_data()
