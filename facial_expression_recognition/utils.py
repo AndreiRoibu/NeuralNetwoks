@@ -79,5 +79,8 @@ def initialise_weights_biases(input_size, output_size):
     b = np.zeros(output_size)
     return W.astype(np.float32), b.astype(np.float32)
 
+def relu(X):
+    return X * (X > 0)
+
 if __name__ == '__main__':
     get_data()
