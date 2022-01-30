@@ -39,7 +39,7 @@ def get_data(Ntest=1000, balance_class_one=False):
 
     return Xtrain, Ytrain, Xtest, Ytest
 
-def get_binary_data(Ntest=1000):
+def get_binary_data(Ntest=1000, balance_class_one=False):
     file_path = directory_path + 'data/challenges-in-representation-learning-facial-expression-recognition-challenge/fer2013/fer2013.csv'
 
     # We read the data
@@ -65,7 +65,19 @@ def get_binary_data(Ntest=1000):
     Xtrain, Ytrain = X[:-Ntest], Y[:-Ntest]
     Xtest, Ytest = X[Ntest:], Y[Ntest:]
 
+    if balance_class_one == True:
+        Xoriginal, Yoriginal = Xtrain[Ytrain!=1, :], Ytrain[Ytrain!=1]
+        Xone = Xtrain[Ytrain==1, :]
+        Xone = np.repeat(Xone, 9, axis=0) # balancing class 1
+        Xtrain = np.vstack([Xoriginal, Xone])
+        Ytrain = np.concatenate((Yoriginal, [1*len(Xone)]))
+
     return Xtrain, Ytrain, Xtest, Ytest
+
+def initialise_weights_biases(input_size, output_size):
+    W = np.random.randn(input_size, output_size) / np.sqrt(input_size)
+    b = np.zeros(output_size)
+    return W.astype(np.float32), b.astype(np.float32)
 
 if __name__ == '__main__':
     get_data()
