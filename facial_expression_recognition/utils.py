@@ -82,5 +82,8 @@ def initialise_weights_biases(input_size, output_size):
 def relu(X):
     return X * (X > 0)
 
+def sigmoid(X):
+    return 1 / (1 + np.exp(-X))
+
 if __name__ == '__main__':
     get_data()
