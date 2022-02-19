@@ -103,6 +103,15 @@ def softmax(Y):
     return np.exp(Y) / np.exp(Y).sum(axis=1, keepdims=True)
 
 
+def softmax_cost(T, Y):
+    # Softmax Cross-Entropy
+    N = len(T)
+    # Less Efficient
+    # return - (T * np.log(Y)).sum() 
+    # More Efficient - only use the actual values where targets are non zero
+    return -np.log(Y[np.arange(N), T]).mean()
+
+
 def error_rate(targets, predictions):
     return np.mean(targets != predictions)
 
