@@ -99,6 +99,10 @@ def sigmoid_cost(T, Y):
     return - (T * np.log(Y) + (1-T) * np.log(1 - Y)).sum()
 
 
+def softmax(Y):
+    return np.exp(Y) / np.exp(Y).sum(axis=1, keepdims=True)
+
+
 def error_rate(targets, predictions):
     return np.mean(targets != predictions)
 
